@@ -16,12 +16,15 @@ let requiredRange2 = [100, 350];
 let requiredRange3 = [200, null];
 
 function filterCoursesByPrice(priceArray){
+    let priceMin = priceArray[0];
+    let priceMax = priceArray[1];
+
     return courses.filter(item => {
-        if(priceArray[1] === null && item.prices[1] === null){
+        if(priceMax === null && item.prices[1] === null){
             return item;
-        } else if (priceArray[1] === null && priceArray[0] <= item.prices[1]){
+        } else if (priceMax === null && priceMin <= item.prices[1]){
             return item;
-        } else if (priceArray[1] != null && priceArray[1] >= item.prices[0] && (priceArray[0] <= item.prices[1] || item.prices[1] === null)){
+        } else if (priceMax != null && priceMax >= item.prices[0] && (priceMin <= item.prices[1] || item.prices[1] === null)){
             return item;
         }
     })
